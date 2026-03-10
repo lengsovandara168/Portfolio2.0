@@ -1,25 +1,83 @@
 ---
-// No props needed for static header
+import HeaderExperience from "./HeaderExperience.jsx";
+
+const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "Focus", href: "#about" },
+  { label: "Work", href: "#projects" },
+  { label: "Contact", href: "#contact", cta: true },
+];
 ---
-<header class="fixed w-full bg-gray-900 top-0 left-0 z-50">
-  <nav class="flex justify-between items-center h-14 max-w-7xl mx-auto px-4">
-    <a href="#" class="text-white font-semibold text-lg">
-      Sovandara <span class="text-cyan-400">Leng</span>
-    </a>
-    <div class="block md:hidden cursor-pointer" id="nav-toggle">
-      <i class="ri-menu-line text-2xl text-white"></i>
-    </div>
-    <div class="hidden md:block" id="nav-menu">
-      <ul class="flex space-x-6">
-        <li><a href="#home" class="text-gray-200 hover:text-cyan-400 transition">Home</a></li>
-        <li><a href="#about" class="text-gray-200 hover:text-cyan-400 transition">About</a></li>
-        <li><a href="#services" class="text-gray-200 hover:text-cyan-400 transition">Services</a></li>
-        <li><a href="#projects" class="text-gray-200 hover:text-cyan-400 transition">Projects</a></li>
-        <li><a href="#contact" class="text-gray-200 hover:text-cyan-400 transition">Contact</a></li>
-      </ul>
-    </div>
-    <div class="hidden" id="nav-close">
-      <i class="ri-close-line text-2xl text-white"></i>
-    </div>
-  </nav>
+<header id="site-header" class="header-shell fixed top-0 left-0 z-50 w-full bg-transparent">
+  <HeaderExperience
+    client:load
+    items={navItems}
+  />
 </header>
+
+<style is:global>
+  .header-pill {
+    left: auto !important;
+    right: 1rem !important;
+    transform: translate3d(0, 0, 0) !important;
+    transition:
+      right 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .header-shell.is-scrolled .header-pill {
+    right: 50% !important;
+    transform: translate3d(50%, 0, 0) !important;
+  }
+
+  .header-kicker {
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  .header-shell.is-scrolled .header-kicker {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+  }
+
+  @media (max-width: 1023px) {
+    .header-pill,
+    .header-shell.is-scrolled .header-pill,
+    .header-kicker,
+    .header-shell.is-scrolled .header-kicker {
+      left: 0 !important;
+      right: 0 !important;
+      transform: none !important;
+      transition: none;
+    }
+
+    .header-kicker,
+    .header-shell.is-scrolled .header-kicker {
+      display: none !important;
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById("site-header");
+
+  const toggleHeaderPosition = () => {
+    if (!header) return;
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+
+  let resizeTimer = 0;
+  const onResize = () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(toggleHeaderPosition, 80);
+  };
+
+  toggleHeaderPosition();
+
+  window.addEventListener("resize", onResize, { passive: true });
+  window.addEventListener("scroll", toggleHeaderPosition, { passive: true });
+</script>

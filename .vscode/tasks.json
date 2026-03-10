@@ -56,6 +56,77 @@
 				"--yes"
 			],
 			"isBackground": false
+		},
+		{
+			"label": "add-reactbits-pillnav-final",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"@react-bits/PillNav-JS-TW"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "reactbits-spotlightcard",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"@react-bits/SpotlightCard-JS-TW",
+				"--yes"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "reactbits-splittext",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"@react-bits/SplitText-JS-TW",
+				"--yes"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "reactbits-animatedcontent",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"@react-bits/AnimatedContent-JS-TW",
+				"--yes"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "reactbits-stepper",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"@react-bits/Stepper-JS-TW",
+				"--yes"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "reactbits-shinytext",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"@react-bits/ShinyText-JS-TW",
+				"--yes"
+			],
+			"isBackground": false
 		}
 	]
 }

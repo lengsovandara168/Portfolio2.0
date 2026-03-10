@@ -1,29 +1,5 @@
 ---
-// Home section component
+import HeroShowcase from "./HeroShowcase.jsx";
 ---
 
-<section id="home" class="min-h-[80vh] flex items-center bg-base-100">
-  <div class="hero w-full">
-    <div class="hero-content flex-col md:flex-row-reverse w-full max-w-7xl mx-auto px-4 gap-8">
-      <div class="avatar mb-8 md:mb-0 md:ml-8 shrink-0">
-        <div class="w-60 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-          <img src="/assets/img/profile.jpg" alt="Leng Sovandara profile" />
-        </div>
-      </div>
-      <div class="max-w-xl">
-        <h3 class="text-lg font-medium text-base-content mb-2">Hello, <span class="text-primary">I'm</span></h3>
-        <h1 class="text-4xl md:text-5xl font-bold text-base-content mb-2">Leng Sovandara</h1>
-        <h3 class="text-xl font-semibold text-primary mb-4">Front-end Developer</h3>
-        <p class="text-base-content/70 mb-6">
-          With a passion for software development and a solid foundation from the American University of Phnom Penh, I create innovative and practical digital solutions. From coding to design, I focus on delivering high-quality work that reflects both creativity and technical skill.
-        </p>
-        <a href="#contact" class="btn btn-primary btn-wide mb-4">Let's talk</a>
-        <div class="flex gap-4 mt-2">
-          <a href="https://github.com/lengsovandara168" target="_blank" class="btn btn-ghost btn-circle text-2xl"><i class="ri-github-fill"></i></a>
-          <a href="https://www.linkedin.com/in/leng-sovandara-41766b294" target="_blank" class="btn btn-ghost btn-circle text-2xl"><i class="ri-linkedin-box-fill"></i></a>
-          <a href="https://www.instagram.com/leng_sovandara/" target="_blank" class="btn btn-ghost btn-circle text-2xl"><i class="ri-instagram-fill"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<HeroShowcase client:load />

@@ -1,14 +1,48 @@
 ---
 // Footer section component
 ---
-<footer class="bg-gray-900 py-8 mt-8">
-  <div class="container mx-auto grid gap-4 text-center">
-    <h1 class="text-2xl font-bold text-white">Sovandara<span class="text-cyan-400"> Leng</span></h1>
-    <div class="flex justify-center gap-6 mt-2">
-      <a href="https://www.facebook.com/lengsovandara11" target="_blank" class="text-2xl text-gray-300 hover:text-cyan-400"><i class="ri-facebook-fill"></i></a>
-      <a href="https://www.instagram.com/leng_sovandara/" target="_blank" class="text-2xl text-gray-300 hover:text-cyan-400"><i class="ri-instagram-fill"></i></a>
-      <a href="https://www.linkedin.com/in/leng-sovandara-41766b294" target="_blank" class="text-2xl text-gray-300 hover:text-cyan-400"><i class="ri-linkedin-box-fill"></i></a>
+<footer class="relative mt-20 border-t border-white/5 bg-[#0b1220] py-12 overflow-hidden">
+  {/* Subtle Background Glow */}
+  <div class="absolute -top-24 left-1/2 -translate-x-1/2 h-48 w-full max-w-4xl bg-[#e6d3aa]/5 blur-[100px]" />
+
+  <div class="container relative mx-auto px-6 text-center">
+    <div class="mb-8">
+      <h2 class="text-2xl font-black tracking-tight text-white">
+        Sovandara<span class="text-[#e6d3aa]">.</span>
+      </h2>
+      <p class="mt-2 text-sm text-slate-400">Building for the future .</p>
     </div>
-    <span class="text-gray-400 text-sm">&#169; Copyright Leng Sovandara. All rights reserved</span>
+
+    {/* Social Links with Reactbits-style Hover */}
+    <div class="flex justify-center gap-4">
+      {[
+        { href: "https://www.facebook.com/lengsovandara11", icon: "ri-facebook-fill" },
+        { href: "https://www.instagram.com/leng_sovandara/", icon: "ri-instagram-fill" },
+        { href: "https://www.linkedin.com/in/leng-sovandara-41766b294", icon: "ri-linkedin-box-fill" },
+        { href: "https://github.com/lengsovandara168", icon: "ri-github-fill" } // Added Github for Dev credibility
+      ].map((social) => (
+        <a 
+          href={social.href} 
+          target="_blank" 
+          class="group relative flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.03] text-xl text-slate-400 transition-all hover:bg-[#e6d3aa]/10 hover:text-[#e6d3aa] border border-white/5 hover:border-[#e6d3aa]/20"
+        >
+          <i class={social.icon}></i>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-between border-t border-white/5 pt-8 md:flex-row">
+      <span class="text-xs font-medium uppercase tracking-widest text-slate-500">
+        &copy; {new Date().getFullYear()} Leng Sovandara
+      </span>
+      
+      <div class="mt-4 flex items-center gap-2 md:mt-0">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+        </span>
+        <span class="text-xs font-medium text-slate-400">Available for collaboration</span>
+      </div>
+    </div>
   </div>
 </footer>
