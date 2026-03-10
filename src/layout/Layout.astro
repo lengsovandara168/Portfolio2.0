@@ -1,0 +1,24 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+---
+
+
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Leng Sovandara portfolio</title>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+    </head>
+    <body class="bg-gray-950 text-gray-100 min-h-screen">
+        <Header />
+        <main class="pt-20 focus:outline-none" tabindex="-1">
+            <slot />
+        </main>
+        <Footer />
+    </body>

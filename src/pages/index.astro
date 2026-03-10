@@ -1,17 +1,20 @@
 ---
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Home from "../components/Home.astro";
+import Projects from "../components/Projects.astro";
+import Services from "../components/Services.astro";
+import Skills from "../components/Skills.astro";
+import Layout from "../layout/Layout.astro";
+import "../styles/global.css";
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<Home />
+	<About />
+	<Skills />
+	<Services />
+	<Projects />
+	<Contact />
+</Layout>

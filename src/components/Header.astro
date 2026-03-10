@@ -1,0 +1,25 @@
+---
+// No props needed for static header
+---
+<header class="fixed w-full bg-gray-900 top-0 left-0 z-50">
+  <nav class="flex justify-between items-center h-14 max-w-7xl mx-auto px-4">
+    <a href="#" class="text-white font-semibold text-lg">
+      Sovandara <span class="text-cyan-400">Leng</span>
+    </a>
+    <div class="block md:hidden cursor-pointer" id="nav-toggle">
+      <i class="ri-menu-line text-2xl text-white"></i>
+    </div>
+    <div class="hidden md:block" id="nav-menu">
+      <ul class="flex space-x-6">
+        <li><a href="#home" class="text-gray-200 hover:text-cyan-400 transition">Home</a></li>
+        <li><a href="#about" class="text-gray-200 hover:text-cyan-400 transition">About</a></li>
+        <li><a href="#services" class="text-gray-200 hover:text-cyan-400 transition">Services</a></li>
+        <li><a href="#projects" class="text-gray-200 hover:text-cyan-400 transition">Projects</a></li>
+        <li><a href="#contact" class="text-gray-200 hover:text-cyan-400 transition">Contact</a></li>
+      </ul>
+    </div>
+    <div class="hidden" id="nav-close">
+      <i class="ri-close-line text-2xl text-white"></i>
+    </div>
+  </nav>
+</header>

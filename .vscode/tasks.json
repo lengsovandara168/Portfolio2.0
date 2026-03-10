@@ -1,0 +1,61 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "add-reactbits-pillnav",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"@react-bits/PillNav-JS-TW"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "add-reactbits-pillnav-yes",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"@react-bits/PillNav-JS-TW",
+				"--yes"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "shadcn-add-help",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"add",
+				"--help"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "shadcn-init",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"init",
+				"--yes"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "shadcn-init-2",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"shadcn@latest",
+				"init",
+				"--yes"
+			],
+			"isBackground": false
+		}
+	]
+}
