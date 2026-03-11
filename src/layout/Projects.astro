@@ -1,6 +1,6 @@
 ---
+import ProjectsShowcase from "@/components/ProjectsShowcase";
 import { getCollection } from "astro:content";
-import ProjectsShowcase from "./ProjectsShowcase.jsx";
 
 const projectEntries = await getCollection("projects");
 const projects = projectEntries.map(({ data }) => ({
@@ -8,11 +8,11 @@ const projects = projectEntries.map(({ data }) => ({
   image: data.image,
   description: data.description,
   link: data.link,
-  highlights:
-    data.highlights ?? [
-      `Built around ${data.tags.slice(0, 2).join(" and ")}.`,
-      "Focused on usability, clean interface design, and practical implementation.",
-    ],
+  year: data.year,
+  role: data.role,
+  tags: data.tags,
+  tech: data.tech,
+ 
 }));
 ---
 

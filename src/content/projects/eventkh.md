@@ -5,8 +5,8 @@ image: "assets/img/Eventkh.png"
 tags: ["Web", "Events", "Platform"]
 link: "https://event.gov.kh"
 year: "2026"
-role: "Platform Product"
-tech: ["React", "Tailwind", "Supabase", "UI Design"]
+role: "Government Platform"
+
 highlights:
   - "Designed to help users explore and manage events with less friction."
   - "Focused on clear flows, modern UI, and practical usability."

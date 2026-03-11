@@ -92,3 +92,166 @@
     max-width: 100%;
   }
 }
+
+/* ===================================================
+   PORTFOLIO DESIGN TOKENS
+   Dark is default. Overridden by [data-theme="light"].
+=================================================== */
+:root {
+  --p-bg:           #0b1220;
+  --p-bg-raised:    #121a2b;
+  --p-surface:      rgba(255, 255, 255, 0.03);
+  --p-text:         #f8fafc;
+  --p-text-2:       #cbd5e1;
+  --p-text-3:       #94a3b8;
+  --p-border:       rgba(255, 255, 255, 0.1);
+  --p-border-subtle:rgba(255, 255, 255, 0.05);
+  --p-border-solid: rgba(255, 255, 255, 0.14);
+  --p-accent-text:  #e6d3aa;
+}
+
+[data-theme="light"] {
+  --p-bg:           #f7f4ef;
+  --p-bg-raised:    #e8e3d8;
+  --p-surface:      rgba(0, 0, 0, 0.035);
+  --p-text:         #0b1220;
+  --p-text-2:       #374151;
+  --p-text-3:       #6b7280;
+  --p-border:       rgba(0, 0, 0, 0.1);
+  --p-border-subtle:rgba(0, 0, 0, 0.06);
+  --p-border-solid: rgba(0, 0, 0, 0.13);
+  --p-accent-text:  #8b6914;
+}
+
+/* ===================================================
+   SMOOTH THEME TRANSITIONS
+=================================================== */
+body, main, section, footer, header, article, aside, div, a, span, p, h1, h2, h3, h4, h5, h6, li, ol, ul, input, textarea, button, form {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ===================================================
+   LIGHT MODE — comprehensive page overrides
+   Applied when <html data-theme="light">
+=================================================== */
+
+/* ── Broad structural backgrounds ── */
+[data-theme="light"] body,
+[data-theme="light"] main {
+  background-color: var(--p-bg) !important;
+  color: var(--p-text) !important;
+}
+[data-theme="light"] section {
+  background-color: var(--p-bg) !important;
+  color: var(--p-text) !important;
+}
+[data-theme="light"] footer {
+  background-color: var(--p-bg) !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ── Hardcoded dark page backgrounds ── */
+[data-theme="light"] [class*="bg-[#0b1220]"],
+[data-theme="light"] [class*="bg-[#0b1220]/95"],
+[data-theme="light"] [class*="bg-[#0b1220]/60"],
+[data-theme="light"] [class*="bg-[#0b1220]/50"] {
+  background-color: var(--p-bg) !important;
+}
+
+/* ── Raised surfaces (experience stepper, code preview panels) ── */
+[data-theme="light"] [class*="bg-[#121a2b]"],
+[data-theme="light"] [class*="bg-[#101726]/80"] {
+  background-color: var(--p-bg-raised) !important;
+}
+
+/* ── Neutral surfaces — SpotlightCard base ── */
+[data-theme="light"] .bg-neutral-900 {
+  background-color: var(--p-bg-raised) !important;
+}
+[data-theme="light"] .border-neutral-800 {
+  border-color: var(--p-border) !important;
+}
+[data-theme="light"] .bg-neutral-600 {
+  background-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+/* ── White-transparent card surfaces ── */
+[data-theme="light"] .bg-white\/\[0\.02\],
+[data-theme="light"] .bg-white\/\[0\.03\],
+[data-theme="light"] .bg-white\/\[0\.04\],
+[data-theme="light"] .bg-white\/\[0\.05\] {
+  background-color: var(--p-surface) !important;
+}
+[data-theme="light"] .bg-white\/5  { background-color: rgba(0, 0, 0, 0.04) !important; }
+[data-theme="light"] .bg-white\/10 { background-color: rgba(0, 0, 0, 0.06) !important; }
+[data-theme="light"] .bg-white\/20 { background-color: rgba(0, 0, 0, 0.10) !important; }
+[data-theme="light"] .bg-white\/25 { background-color: rgba(0, 0, 0, 0.14) !important; }
+
+/* ── Form card & inputs ── */
+[data-theme="light"] .bg-gray-900  { background-color: #e8e4da !important; }
+[data-theme="light"] .bg-gray-800  { background-color: #d6d0c5 !important; }
+[data-theme="light"] input,
+[data-theme="light"] textarea {
+  background-color: #d6d0c5 !important;
+  color: #0b1220 !important;
+}
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder { color: #9ca3af !important; }
+
+/* ── Text ── */
+[data-theme="light"] .text-white   { color: var(--p-text) !important; }
+[data-theme="light"] .text-slate-200 { color: #1f2937 !important; }
+[data-theme="light"] .text-slate-300 { color: #374151 !important; }
+[data-theme="light"] .text-slate-400 { color: #6b7280 !important; }
+[data-theme="light"] .text-slate-500 { color: #9ca3af !important; }
+[data-theme="light"] .text-gray-100 { color: #0b1220 !important; }
+[data-theme="light"] .text-gray-300 { color: #374151 !important; }
+[data-theme="light"] .text-gray-400 { color: #6b7280 !important; }
+[data-theme="light"] .text-neutral-400 { color: #6b7280 !important; }
+[data-theme="light"] .text-\[#e6d3aa\] { color: var(--p-accent-text) !important; }
+[data-theme="light"] .text-\[#dbeafe\]  { color: #0b1220 !important; }
+
+/* ── Borders ── */
+[data-theme="light"] .border-white\/5  { border-color: rgba(0, 0, 0, 0.06) !important; }
+[data-theme="light"] .border-white\/10 { border-color: rgba(0, 0, 0, 0.10) !important; }
+[data-theme="light"] .border-white\/15 { border-color: rgba(0, 0, 0, 0.12) !important; }
+
+/* ── Hover backgrounds ── */
+[data-theme="light"] .hover\:bg-white\/5:hover  { background-color: rgba(0, 0, 0, 0.05) !important; }
+[data-theme="light"] .hover\:bg-white\/10:hover { background-color: rgba(0, 0, 0, 0.07) !important; }
+[data-theme="light"] .hover\:bg-\[#e6d3aa\]\/10:hover { background-color: rgba(139, 105, 20, 0.1) !important; }
+[data-theme="light"] .hover\:border-\[#e6d3aa\]\/20:hover { border-color: rgba(139, 105, 20, 0.2) !important; }
+
+/* ── Hover text ── */
+[data-theme="light"] .hover\:text-white:hover    { color: #0b1220 !important; }
+[data-theme="light"] .hover\:text-\[#e6d3aa\]:hover { color: #7a5c10 !important; }
+[data-theme="light"] .hover\:text-\[#f1e4c8\]:hover { color: #8b6914 !important; }
+[data-theme="light"] .hover\:text-\[#f3e3bf\]:hover { color: #7a5c10 !important; }
+[data-theme="light"] .hover\:text-neutral-700:hover { color: #374151 !important; }
+
+/* ── Hero CTA "View Work" button: white → dark in light mode ── */
+[data-theme="light"] a.bg-white {
+  background-color: #0b1220 !important;
+  color: #f8f6f1 !important;
+}
+[data-theme="light"] a.hover\:bg-\[#f6f1e7\]:hover { background-color: #1e2d45 !important; }
+[data-theme="light"] a.border-white\/15 {
+  border-color: rgba(11, 18, 32, 0.2) !important;
+  color: #0b1220 !important;
+}
+
+/* ── Skills list items & general list text ── */
+[data-theme="light"] ol li,
+[data-theme="light"] ul:not(.m-0) li { color: var(--p-text) !important; }
+
+/* ── Journey Timeline section ── */
+[data-theme="light"] #journey { background-color: var(--p-bg) !important; }
+[data-theme="light"] #journey .text-slate-300 { color: #374151 !important; }
+[data-theme="light"] #journey .text-white { color: #0b1220 !important; }
+
+/* ── Project UI-placeholder preview panels ── */
+[data-theme="light"] .bg-\[linear-gradient\(180deg\,rgba\(255\,255\,255\,0\.05\)\,rgba\(10\,15\,25\,0\.92\)\)\,radial-gradient\(circle_at_top_left\,rgba\(199\,167\,108\,0\.25\)\,transparent_38\%\)\] {
+  background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(220,215,205,0.92)),
+              radial-gradient(circle at top left, rgba(199,167,108,0.18), transparent 38%) !important;
+}
+

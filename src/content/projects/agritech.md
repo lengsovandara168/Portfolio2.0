@@ -1,7 +1,7 @@
 ---
 title: "Agri-Tech Chatbot"
 description: "An AI-powered chatbot built for Cambodian farmers as my Final Year Project, designed to deliver practical answers in a simple, accessible way."
-image: "/images/ai-chatbot.png"
+image: "assets/img/agritech.png"
 tags: ["AI", "Chatbot", "Agriculture"]
 link: "https://github.com/lengsovandara168"
 year: "2026"

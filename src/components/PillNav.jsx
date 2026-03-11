@@ -18,6 +18,33 @@ const PillNav = ({
 }) => {
   const resolvedPillTextColor = pillTextColor ?? baseColor;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("theme");
+      if (saved) return saved;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    return "dark";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.setAttribute("data-theme", "dark");
+      root.classList.add("dark");
+    } else {
+      root.setAttribute("data-theme", "light");
+      root.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+
+  const isDark = theme === "dark";
+
   const circleRefs = useRef([]);
   const tlRefs = useRef([]);
   const activeTweenRefs = useRef([]);
@@ -38,7 +65,8 @@ const PillNav = ({
         const { width: w, height: h } = rect;
         const R = ((w * w) / 4 + h * h) / (2 * h);
         const D = Math.ceil(2 * R) + 2;
-        const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
+        const delta =
+          Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
         const originY = D - delta;
 
         circle.style.width = `${D}px`;
@@ -62,12 +90,25 @@ const PillNav = ({
 
         tlRefs.current[index]?.kill();
         const tl = gsap.timeline({ paused: true });
-        tl.to(circle, { scale: 1.2, xPercent: -50, duration: 2, ease, overwrite: "auto" }, 0);
+        tl.to(
+          circle,
+          { scale: 1.2, xPercent: -50, duration: 2, ease, overwrite: "auto" },
+          0,
+        );
 
-        if (label) tl.to(label, { y: -(h + 8), duration: 2, ease, overwrite: "auto" }, 0);
+        if (label)
+          tl.to(
+            label,
+            { y: -(h + 8), duration: 2, ease, overwrite: "auto" },
+            0,
+          );
         if (white) {
           gsap.set(white, { y: Math.ceil(h + 100), opacity: 0 });
-          tl.to(white, { y: 0, opacity: 1, duration: 2, ease, overwrite: "auto" }, 0);
+          tl.to(
+            white,
+            { y: 0, opacity: 1, duration: 2, ease, overwrite: "auto" },
+            0,
+          );
         }
 
         tlRefs.current[index] = tl;
@@ -80,7 +121,8 @@ const PillNav = ({
     document.fonts?.ready?.then(layout).catch(() => {});
 
     const menu = mobileMenuRef.current;
-    if (menu) gsap.set(menu, { visibility: "hidden", opacity: 0, scaleY: 1, y: 0 });
+    if (menu)
+      gsap.set(menu, { visibility: "hidden", opacity: 0, scaleY: 1, y: 0 });
 
     if (initialLoadAnimation) {
       if (logoRef.current) {
@@ -100,14 +142,22 @@ const PillNav = ({
     const tl = tlRefs.current[i];
     if (!tl) return;
     activeTweenRefs.current[i]?.kill();
-    activeTweenRefs.current[i] = tl.tweenTo(tl.duration(), { duration: 0.3, ease, overwrite: "auto" });
+    activeTweenRefs.current[i] = tl.tweenTo(tl.duration(), {
+      duration: 0.3,
+      ease,
+      overwrite: "auto",
+    });
   };
 
   const handleLeave = (i) => {
     const tl = tlRefs.current[i];
     if (!tl) return;
     activeTweenRefs.current[i]?.kill();
-    activeTweenRefs.current[i] = tl.tweenTo(0, { duration: 0.2, ease, overwrite: "auto" });
+    activeTweenRefs.current[i] = tl.tweenTo(0, {
+      duration: 0.2,
+      ease,
+      overwrite: "auto",
+    });
   };
 
   const handleLogoEnter = () => {
@@ -115,7 +165,12 @@ const PillNav = ({
     if (!img) return;
     logoTweenRef.current?.kill();
     gsap.set(img, { rotate: 0 });
-    logoTweenRef.current = gsap.to(img, { rotate: 360, duration: 0.2, ease, overwrite: "auto" });
+    logoTweenRef.current = gsap.to(img, {
+      rotate: 360,
+      duration: 0.2,
+      ease,
+      overwrite: "auto",
+    });
   };
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -140,7 +195,11 @@ const PillNav = ({
     if (menu) {
       if (newState) {
         gsap.set(menu, { visibility: "visible" });
-        gsap.fromTo(menu, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease });
+        gsap.fromTo(
+          menu,
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.3, ease },
+        );
       } else {
         gsap.to(menu, {
           opacity: 0,
@@ -166,9 +225,15 @@ const PillNav = ({
   };
 
   return (
-    <div className={`absolute top-3 z-[1000] w-full px-3 sm:px-4 lg:w-auto lg:px-0 ${wrapperClassName}`}>
+    <div
+      className={`absolute top-3 z-[1000] w-full px-3 sm:px-4 lg:w-auto lg:px-0 ${wrapperClassName}`}
+    >
       <nav
-        className={`box-border flex w-full max-w-full items-center justify-between rounded-full border border-white/10 bg-[#0b1220]/95 px-2 py-1.5 shadow-[0_10px_30px_rgba(2,6,23,0.35)] ${className}`}
+        className={`box-border flex w-full max-w-full items-center justify-between rounded-full px-2 py-1.5 transition-[background-color,border-color,box-shadow] duration-300 ${
+          isDark
+            ? "border border-white/10 bg-[#0b1220]/95 shadow-[0_10px_30px_rgba(2,6,23,0.35)]"
+            : "border border-black/10 bg-[#f8f6f1]/95 shadow-[0_4px_20px_rgba(0,0,0,0.09)]"
+        } ${className}`}
         aria-label="Primary"
         style={cssVars}
       >
@@ -180,9 +245,18 @@ const PillNav = ({
             logoRef.current = el;
           }}
           className="inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 p-2"
-          style={{ width: "var(--nav-h)", height: "var(--nav-h)", background: "transparent" }}
+          style={{
+            width: "var(--nav-h)",
+            height: "var(--nav-h)",
+            background: "transparent",
+          }}
         >
-          <img src={logo} alt={logoAlt} ref={logoImgRef} className="block h-full w-full object-cover" />
+          <img
+            src={logo}
+            alt={logoAlt}
+            ref={logoImgRef}
+            className="block h-full w-full object-cover"
+          />
         </a>
 
         <div
@@ -190,7 +264,11 @@ const PillNav = ({
           className="relative ml-2 hidden max-w-[calc(100vw-8rem)] items-center overflow-x-auto rounded-full lg:flex"
           style={{ height: "var(--nav-h)", background: "transparent" }}
         >
-          <ul role="menubar" className="m-0 flex h-full list-none items-stretch p-[3px]" style={{ gap: "var(--pill-gap)" }}>
+          <ul
+            role="menubar"
+            className="m-0 flex h-full list-none items-stretch p-[3px]"
+            style={{ gap: "var(--pill-gap)" }}
+          >
             {items.map((item, i) => {
               const isActive = activeHref === item.href;
               const isCta = Boolean(item.cta);
@@ -201,9 +279,21 @@ const PillNav = ({
                     href={item.href}
                     className={`relative inline-flex h-full cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap rounded-full px-0 text-[13px] font-semibold leading-[1] no-underline box-border transition-colors duration-200 xl:text-[15px] ${isCta ? "border px-4 text-slate-900" : "text-slate-300 hover:text-white"}`}
                     style={{
-                      background: isCta ? "var(--pill-bg, #c7a76c)" : "transparent",
-                      borderColor: isCta ? "rgba(199, 167, 108, 0.34)" : "transparent",
-                      color: isCta ? "#0b1220" : isActive ? "#f8fafc" : "#cbd5e1",
+                      background: isCta
+                        ? "var(--pill-bg, #c7a76c)"
+                        : "transparent",
+                      borderColor: isCta
+                        ? "rgba(199, 167, 108, 0.34)"
+                        : "transparent",
+                      color: isCta
+                        ? "#0b1220"
+                        : isActive
+                          ? isDark
+                            ? "#f8fafc"
+                            : "#0b1220"
+                          : isDark
+                            ? "#cbd5e1"
+                            : "#374151",
                       paddingLeft: "var(--pill-pad-x)",
                       paddingRight: "var(--pill-pad-x)",
                     }}
@@ -215,7 +305,10 @@ const PillNav = ({
                     {!isCta ? (
                       <span
                         className="hover-circle pointer-events-none absolute left-1/2 bottom-0 z-[1] block rounded-full"
-                        style={{ background: "rgba(199, 167, 108, 0.16)", willChange: "transform" }}
+                        style={{
+                          background: "rgba(199, 167, 108, 0.16)",
+                          willChange: "transform",
+                        }}
                         aria-hidden="true"
                         ref={(el) => {
                           circleRefs.current[i] = el;
@@ -223,20 +316,31 @@ const PillNav = ({
                       />
                     ) : null}
                     <span className="label-stack relative z-[2] inline-block leading-[1]">
-                      <span className="pill-label relative z-[2] inline-block leading-[1]" style={{ willChange: isCta ? "auto" : "transform" }}>
+                      <span
+                        className="pill-label relative z-[2] inline-block leading-[1]"
+                        style={{ willChange: isCta ? "auto" : "transform" }}
+                      >
                         {item.label}
                       </span>
                       {!isCta ? (
                         <span
                           className="pill-label-hover absolute left-0 top-0 z-[3] inline-block"
-                          style={{ color: "#f8fafc", willChange: "transform, opacity" }}
+                          style={{
+                            color: isDark ? "#f8fafc" : "#0b1220",
+                            willChange: "transform, opacity",
+                          }}
                           aria-hidden="true"
                         >
                           {item.label}
                         </span>
                       ) : null}
                     </span>
-                    {isActive && !isCta ? <span className="absolute inset-x-3 bottom-1 h-px rounded-full bg-[#c7a76c]" aria-hidden="true" /> : null}
+                    {isActive && !isCta ? (
+                      <span
+                        className="absolute inset-x-3 bottom-1 h-px rounded-full bg-[#c7a76c]"
+                        aria-hidden="true"
+                      />
+                    ) : null}
                   </a>
                 </li>
               );
@@ -244,17 +348,73 @@ const PillNav = ({
           </ul>
         </div>
 
-        <button
-          ref={hamburgerRef}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-          aria-expanded={isMobileMenuOpen}
-          className="relative flex shrink-0 flex-col items-center justify-center gap-1 rounded-full border border-white/10 p-0 lg:hidden"
-          style={{ width: "var(--nav-h)", height: "var(--nav-h)", background: "transparent" }}
-        >
-          <span className="hamburger-line h-0.5 w-4 rounded" style={{ background: "#e2e8f0" }} />
-          <span className="hamburger-line h-0.5 w-4 rounded" style={{ background: "#e2e8f0" }} />
-        </button>
+        <div className="ml-2 flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            aria-label={
+              theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+            }
+            className="inline-flex shrink-0 items-center justify-center rounded-full border border-white/10 transition-colors duration-200 hover:bg-white/10"
+            style={{
+              width: "var(--nav-h)",
+              height: "var(--nav-h)",
+              background: "transparent",
+            }}
+          >
+            {theme === "dark" ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#fbbf24"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#94a3b8"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            )}
+          </button>
+
+          <button
+            ref={hamburgerRef}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            className="relative flex shrink-0 flex-col items-center justify-center gap-1 rounded-full border border-white/10 p-0 lg:hidden"
+            style={{
+              width: "var(--nav-h)",
+              height: "var(--nav-h)",
+              background: "transparent",
+            }}
+          >
+            <span
+              className="hamburger-line h-0.5 w-4 rounded"
+              style={{ background: isDark ? "#e2e8f0" : "#1f2937" }}
+            />
+            <span
+              className="hamburger-line h-0.5 w-4 rounded"
+              style={{ background: isDark ? "#e2e8f0" : "#1f2937" }}
+            />
+          </button>
+        </div>
       </nav>
 
       <button
@@ -263,13 +423,17 @@ const PillNav = ({
         aria-hidden={!isMobileMenuOpen}
         tabIndex={isMobileMenuOpen ? 0 : -1}
         onClick={closeMobileMenu}
-        className={`absolute inset-0 top-[3.2rem] z-[997] rounded-[2rem] bg-[#0b1220]/50 transition-all duration-300 lg:hidden ${isMobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`absolute inset-0 top-[3.2rem] z-[997] rounded-[2rem] bg-black/40 transition-all duration-300 lg:hidden ${isMobileMenuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       <div
         ref={mobileMenuRef}
         className="absolute left-3 right-3 top-[3.4rem] z-[998] origin-top rounded-[27px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.12)] sm:left-4 sm:right-4 lg:hidden"
-        style={{ ...cssVars, background: "#0b1220" }}
+        style={{
+          ...cssVars,
+          background: isDark ? "#0b1220" : "#f8f6f1",
+          borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+        }}
       >
         <ul className="m-0 flex list-none flex-col gap-[3px] p-[3px]">
           {items.map((item) => (
@@ -277,7 +441,12 @@ const PillNav = ({
               <a
                 href={item.href}
                 className={`block rounded-[50px] px-4 py-3 text-[16px] font-medium transition-all duration-200 ${item.cta ? "text-slate-900" : "text-slate-200 hover:bg-white/5"}`}
-                style={{ background: item.cta ? "var(--pill-bg, #c7a76c)" : "transparent", color: item.cta ? "#0b1220" : "#e2e8f0" }}
+                style={{
+                  background: item.cta
+                    ? "var(--pill-bg, #c7a76c)"
+                    : "transparent",
+                  color: item.cta ? "#0b1220" : isDark ? "#e2e8f0" : "#1f2937",
+                }}
                 aria-current={activeHref === item.href ? "page" : undefined}
                 onClick={closeMobileMenu}
               >
@@ -285,6 +454,53 @@ const PillNav = ({
               </a>
             </li>
           ))}
+          <li>
+            <button
+              onClick={toggleTheme}
+              className={`flex w-full items-center gap-3 rounded-[50px] px-4 py-3 text-[16px] font-medium transition-all duration-200 ${
+                isDark
+                  ? "text-slate-200 hover:bg-white/5"
+                  : "text-gray-700 hover:bg-black/5"
+              }`}
+            >
+              {theme === "dark" ? (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#fbbf24"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                  </svg>
+                  Light Mode
+                </>
+              ) : (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#94a3b8"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                  </svg>
+                  Dark Mode
+                </>
+              )}
+            </button>
+          </li>
         </ul>
       </div>
     </div>

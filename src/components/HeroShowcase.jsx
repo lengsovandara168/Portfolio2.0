@@ -2,6 +2,9 @@ import AnimatedContent from "./AnimatedContent.jsx";
 import ProfileCard from "./ProfileCard.jsx";
 import SplitText from "./SplitText.jsx";
 
+const GMAIL_COMPOSE_URL =
+  "https://mail.google.com/mail/?view=cm&fs=1&to=lengsovandara7@gmail.com&su=Portfolio%20Inquiry";
+
 export default function HeroShowcase() {
   return (
     <section
@@ -52,12 +55,14 @@ export default function HeroShowcase() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <a
                   href="#projects"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0b1220] transition hover:bg-[#f6f1e7] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0b1220] transition hover:bg-green-500 sm:w-auto"
                 >
                   View Work
                 </a>
                 <a
-                  href="#contact"
+                  href={GMAIL_COMPOSE_URL}
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-flex w-full items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-[#c7a76c]/40 hover:text-[#f3e3bf] sm:w-auto"
                 >
                   Contact
@@ -92,9 +97,11 @@ export default function HeroShowcase() {
                 behindGlowColor="rgba(199,167,108,0.22)"
                 behindGlowSize="65%"
                 onContactClick={() => {
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" });
+                  window.open(
+                    GMAIL_COMPOSE_URL,
+                    "_blank",
+                    "noopener,noreferrer",
+                  );
                 }}
               />
             </div>

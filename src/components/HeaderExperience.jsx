@@ -50,6 +50,7 @@ export default function HeaderExperience({ items }) {
         pillColor="#c7a76c"
         hoveredPillTextColor="#0b1220"
       />
+     
     </>
   );
 }

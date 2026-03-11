@@ -6,7 +6,7 @@ tags: ["Design System", "UI/UX", "GovTech"]
 link: "https://chaktomuk.gov.kh"
 year: "2026"
 role: "UI/UX & Frontend"
-tech: ["Figma", "React", "Tailwind", "Storybook"]
+
 highlights:
   - "Standardized UI components to accelerate development across MPTC projects."
   - "Integrated Khmer typography and cultural aesthetics into a modern framework."

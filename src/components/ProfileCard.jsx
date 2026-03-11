@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 
-const DEFAULT_INNER_GRADIENT =
-  "linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)";
+const DEFAULT_INNER_GRADIENT = "none";
 
 const ANIMATION_CONFIG = {
   INITIAL_DURATION: 1200,
@@ -35,7 +34,7 @@ const ProfileCardComponent = ({
   iconUrl = null,
   grainUrl = null,
   innerGradient,
-  behindGlowEnabled = true,
+  behindGlowEnabled = false,
   behindGlowColor,
   behindGlowSize,
   className = "",
@@ -383,33 +382,7 @@ const ProfileCardComponent = ({
     background: "transparent",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundImage: `
-      repeating-linear-gradient(
-        0deg,
-        var(--sunpillar-clr-1) calc(var(--space) * 1),
-        var(--sunpillar-clr-2) calc(var(--space) * 2),
-        var(--sunpillar-clr-3) calc(var(--space) * 3),
-        var(--sunpillar-clr-4) calc(var(--space) * 4),
-        var(--sunpillar-clr-5) calc(var(--space) * 5),
-        var(--sunpillar-clr-6) calc(var(--space) * 6),
-        var(--sunpillar-clr-1) calc(var(--space) * 7)
-      ),
-      repeating-linear-gradient(
-        var(--angle),
-        #0e152e 0%,
-        hsl(180, 10%, 60%) 3.8%,
-        hsl(180, 29%, 66%) 4.5%,
-        hsl(180, 10%, 60%) 5.2%,
-        #0e152e 10%,
-        #0e152e 12%
-      ),
-      radial-gradient(
-        farthest-corner circle at var(--pointer-x) var(--pointer-y),
-        hsla(0, 0%, 0%, 0.1) 12%,
-        hsla(0, 0%, 0%, 0.15) 20%,
-        hsla(0, 0%, 0%, 0.25) 120%
-      )
-    `.replace(/\s+/g, " "),
+    backgroundImage: "none",
     gridArea: "1 / -1",
     borderRadius: cardRadius,
     pointerEvents: "none",
@@ -418,11 +391,7 @@ const ProfileCardComponent = ({
   const glareStyle = {
     transform: "translate3d(0, 0, 1.1px)",
     overflow: "hidden",
-    backgroundImage: `radial-gradient(
-      farthest-corner circle at var(--pointer-x) var(--pointer-y),
-      hsl(248, 25%, 80%) 12%,
-      hsla(207, 40%, 30%, 0.8) 90%
-    )`,
+    backgroundImage: "none",
     mixBlendMode: "overlay",
     filter: "brightness(0.8) contrast(1.2)",
     zIndex: 4,
@@ -443,9 +412,9 @@ const ProfileCardComponent = ({
     >
       {behindGlowEnabled && (
         <div
-          className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-200 ease-out"
+          className=" z-0 pointer-events-none transition-opacity duration-200 ease-out"
           style={{
-            background: `radial-gradient(circle at var(--pointer-x) var(--pointer-y), var(--behind-glow-color) 0%, transparent var(--behind-glow-size))`,
+            background: "none",
             filter: "blur(50px) saturate(1.1)",
             opacity: "calc(0.8 * var(--card-opacity))",
           }}
@@ -464,7 +433,7 @@ const ProfileCardComponent = ({
               "rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px) calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px",
             transition: "transform 1s ease",
             transform: "translateZ(0) rotateX(0deg) rotateY(0deg)",
-            background: "rgba(0, 0, 0, 0.9)",
+            background: "transparent",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transition = "none";
@@ -485,24 +454,18 @@ const ProfileCardComponent = ({
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: "var(--inner-gradient)",
-              backgroundColor: "rgba(0, 0, 0, 0.9)",
+              backgroundImage: "none",
+              backgroundColor: "transparent",
               borderRadius: cardRadius,
               display: "grid",
               gridArea: "1 / -1",
             }}
           >
-            {/* Shine layer */}
-            <div style={shineStyle} />
-
-            {/* Glare layer */}
-            <div style={glareStyle} />
-
             {/* Avatar content */}
             <div
               className="overflow-visible backface-hidden"
               style={{
-                mixBlendMode: "luminosity",
+                mixBlendMode: "normal",
                 transform: "translateZ(2px)",
                 gridArea: "1 / -1",
                 borderRadius: cardRadius,
@@ -510,14 +473,14 @@ const ProfileCardComponent = ({
               }}
             >
               <img
-                className="w-full absolute left-1/2 bottom-[-1px] backface-hidden will-change-transform transition-transform duration-[120ms] ease-out"
+                className="w-full h-full absolute inset-0 object-cover object-center backface-hidden will-change-transform transition-transform duration-[120ms] ease-out"
                 src={avatarUrl}
                 alt={`${name || "User"} avatar`}
                 loading="lazy"
                 style={{
-                  transformOrigin: "50% 100%",
+                  transformOrigin: "50% 50%",
                   transform:
-                    "translateX(calc(-50% + (var(--pointer-from-left) - 0.5) * 6px)) translateZ(0) scaleY(calc(1 + (var(--pointer-from-top) - 0.5) * 0.02)) scaleX(calc(1 + (var(--pointer-from-left) - 0.5) * 0.01))",
+                    "translate3d(calc((var(--pointer-from-left) - 0.5) * 6px), calc((var(--pointer-from-top) - 0.5) * 6px), 0)",
                   borderRadius: cardRadius,
                 }}
                 onError={(e) => {
@@ -596,57 +559,12 @@ const ProfileCardComponent = ({
               style={{
                 transform:
                   "translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px)",
-                mixBlendMode: "luminosity",
+                mixBlendMode: "normal",
                 gridArea: "1 / -1",
                 borderRadius: cardRadius,
                 pointerEvents: "none",
               }}
-            >
-              <div
-                className="w-full absolute flex flex-col"
-                style={{ top: "3em", display: "flex", gridArea: "auto" }}
-              >
-                <h3
-                  className="font-semibold m-0"
-                  style={{
-                    fontSize: "min(5svh, 3em)",
-                    backgroundImage:
-                      "linear-gradient(to bottom, #fff, #6f6fbe)",
-                    backgroundSize: "1em 1.5em",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    WebkitBackgroundClip: "text",
-                    display: "block",
-                    gridArea: "auto",
-                    borderRadius: "0",
-                    pointerEvents: "auto",
-                  }}
-                >
-                  {name}
-                </h3>
-                <p
-                  className="font-semibold whitespace-nowrap mx-auto w-min"
-                  style={{
-                    position: "relative",
-                    top: "-12px",
-                    fontSize: "16px",
-                    margin: "0 auto",
-                    backgroundImage:
-                      "linear-gradient(to bottom, #fff, #4a4ac0)",
-                    backgroundSize: "1em 1.5em",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    WebkitBackgroundClip: "text",
-                    display: "block",
-                    gridArea: "auto",
-                    borderRadius: "0",
-                    pointerEvents: "auto",
-                  }}
-                >
-                  {title}
-                </p>
-              </div>
-            </div>
+            ></div>
           </div>
         </section>
       </div>
