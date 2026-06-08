@@ -5,6 +5,8 @@ import { fileURLToPath } from "url";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   vite: {
     resolve: {
@@ -17,5 +19,7 @@ export default defineConfig({
       allowedHosts: ["wielder-dipped-unplowed.ngrok-free.dev"],
     },
   },
+
   integrations: [react(), tailwind()],
+  adapter: cloudflare()
 });
