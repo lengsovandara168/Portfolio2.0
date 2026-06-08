@@ -454,53 +454,6 @@ const PillNav = ({
               </a>
             </li>
           ))}
-          <li>
-            <button
-              onClick={toggleTheme}
-              className={`flex w-full items-center gap-3 rounded-[50px] px-4 py-3 text-[16px] font-medium transition-all duration-200 ${
-                isDark
-                  ? "text-slate-200 hover:bg-white/5"
-                  : "text-gray-700 hover:bg-black/5"
-              }`}
-            >
-              {theme === "dark" ? (
-                <>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#fbbf24"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="4" />
-                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-                  </svg>
-                  Light Mode
-                </>
-              ) : (
-                <>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#94a3b8"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                  </svg>
-                  Dark Mode
-                </>
-              )}
-            </button>
-          </li>
         </ul>
       </div>
     </div>

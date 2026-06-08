@@ -92,7 +92,7 @@ export default function HeroShowcase() {
                 status="Full-stack & mobile developer"
                 contactText="Contact"
                 iconUrl="/assets/logo/lsd_logo.png"
-                grainUrl="/assets/img/ctm.png"
+                grainUrl="/assets/img/ctm.jpg"
                 behindGlowEnabled={true}
                 behindGlowColor="rgba(199,167,108,0.22)"
                 behindGlowSize="65%"

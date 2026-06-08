@@ -1,7 +1,7 @@
 ---
 title: "Chaktomok Landing page"
 description: "The official design language and component library for Cambodian government digital services, ensuring consistency and accessibility."
-image: "assets/img/ctm.png"
+image: "assets/img/ctm.jpg"
 tags: ["Design System", "UI/UX", "GovTech"]
 link: "https://chaktomuk.gov.kh"
 year: "2026"

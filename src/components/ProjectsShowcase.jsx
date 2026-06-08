@@ -146,9 +146,10 @@ export default function ProjectsShowcase({ projects }) {
                                   href={project.link}
                                   target="_blank"
                                   rel="noreferrer"
+                                  aria-label={`Visit ${project.title} website`}
                                   className="inline-flex items-center gap-2 text-xs font-semibold text-[#f3e3bf] transition hover:text-white"
                                 >
-                                  Open project
+                                  Visit Website
                                   <i className="ri-arrow-right-up-line" />
                                 </a>
                               ) : (

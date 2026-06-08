@@ -1,6 +1,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -111,16 +111,16 @@
 }
 
 [data-theme="light"] {
-  --p-bg:           #f7f4ef;
-  --p-bg-raised:    #e8e3d8;
-  --p-surface:      rgba(0, 0, 0, 0.035);
-  --p-text:         #0b1220;
-  --p-text-2:       #374151;
-  --p-text-3:       #6b7280;
-  --p-border:       rgba(0, 0, 0, 0.1);
-  --p-border-subtle:rgba(0, 0, 0, 0.06);
-  --p-border-solid: rgba(0, 0, 0, 0.13);
-  --p-accent-text:  #8b6914;
+  --p-bg:           #f8fafc;
+  --p-bg-raised:    #ffffff;
+  --p-surface:      #f1f5f9;
+  --p-text:         #0f172a;
+  --p-text-2:       #334155;
+  --p-text-3:       #64748b;
+  --p-border:       rgba(15, 23, 42, 0.06);
+  --p-border-subtle:rgba(15, 23, 42, 0.04);
+  --p-border-solid: rgba(15, 23, 42, 0.1);
+  --p-accent-text:  #4f46e5;
 }
 
 /* ===================================================
@@ -158,9 +158,11 @@ body, main, section, footer, header, article, aside, div, a, span, p, h1, h2, h3
   background-color: var(--p-bg) !important;
 }
 
-/* ── Raised surfaces (experience stepper, code preview panels) ── */
+/* ── Raised surfaces (experience stepper, bento cards, code preview panels) ── */
 [data-theme="light"] [class*="bg-[#121a2b]"],
-[data-theme="light"] [class*="bg-[#101726]/80"] {
+[data-theme="light"] [class*="bg-[#0c1322]"],
+[data-theme="light"] [class*="bg-[#101726]/80"],
+[data-theme="light"] .bg-black {
   background-color: var(--p-bg-raised) !important;
 }
 
@@ -168,11 +170,12 @@ body, main, section, footer, header, article, aside, div, a, span, p, h1, h2, h3
 [data-theme="light"] .bg-neutral-900 {
   background-color: var(--p-bg-raised) !important;
 }
-[data-theme="light"] .border-neutral-800 {
+[data-theme="light"] .border-neutral-800,
+[data-theme="light"] .border-white\/\[0\.1\] {
   border-color: var(--p-border) !important;
 }
 [data-theme="light"] .bg-neutral-600 {
-  background-color: rgba(0, 0, 0, 0.14) !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
 }
 
 /* ── White-transparent card surfaces ── */
@@ -182,21 +185,22 @@ body, main, section, footer, header, article, aside, div, a, span, p, h1, h2, h3
 [data-theme="light"] .bg-white\/\[0\.05\] {
   background-color: var(--p-surface) !important;
 }
-[data-theme="light"] .bg-white\/5  { background-color: rgba(0, 0, 0, 0.04) !important; }
-[data-theme="light"] .bg-white\/10 { background-color: rgba(0, 0, 0, 0.06) !important; }
-[data-theme="light"] .bg-white\/20 { background-color: rgba(0, 0, 0, 0.10) !important; }
-[data-theme="light"] .bg-white\/25 { background-color: rgba(0, 0, 0, 0.14) !important; }
+[data-theme="light"] .bg-white\/5  { background-color: rgba(0, 0, 0, 0.03) !important; }
+[data-theme="light"] .bg-white\/10 { background-color: rgba(0, 0, 0, 0.05) !important; }
+[data-theme="light"] .bg-white\/20 { background-color: rgba(0, 0, 0, 0.08) !important; }
+[data-theme="light"] .bg-white\/25 { background-color: rgba(0, 0, 0, 0.12) !important; }
 
 /* ── Form card & inputs ── */
-[data-theme="light"] .bg-gray-900  { background-color: #e8e4da !important; }
-[data-theme="light"] .bg-gray-800  { background-color: #d6d0c5 !important; }
+[data-theme="light"] .bg-gray-900  { background-color: #f1f5f9 !important; }
+[data-theme="light"] .bg-gray-800  { background-color: #f8fafc !important; }
 [data-theme="light"] input,
 [data-theme="light"] textarea {
-  background-color: #d6d0c5 !important;
-  color: #0b1220 !important;
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
 }
 [data-theme="light"] input::placeholder,
-[data-theme="light"] textarea::placeholder { color: #9ca3af !important; }
+[data-theme="light"] textarea::placeholder { color: #64748b !important; }
 
 /* ── Text ── */
 [data-theme="light"] .text-white   { color: var(--p-text) !important; }
@@ -255,3 +259,26 @@ body, main, section, footer, header, article, aside, div, a, span, p, h1, h2, h3
               radial-gradient(circle at top left, rgba(199,167,108,0.18), transparent 38%) !important;
 }
 
+/* ── Achievements section ── */
+[data-theme="light"] #achievements { background-color: var(--p-bg) !important; }
+[data-theme="light"] #achievements .text-slate-300 { color: #374151 !important; }
+[data-theme="light"] #achievements .text-slate-400 { color: #6b7280 !important; }
+[data-theme="light"] #achievements .text-slate-500 { color: #9ca3af !important; }
+[data-theme="light"] #achievements .text-white     { color: #0b1220 !important; }
+
+/* ── Contact section ── */
+[data-theme="light"] #contact { background-color: var(--p-bg) !important; }
+[data-theme="light"] #contact .text-slate-300 { color: #374151 !important; }
+[data-theme="light"] #contact .text-slate-500 { color: #9ca3af !important; }
+[data-theme="light"] #contact .text-white     { color: #0b1220 !important; }
+
+/* Keep text inside photo-backed Bento cards light in light mode */
+[data-theme="light"] #achievements .group .text-white {
+  color: #ffffff !important;
+}
+[data-theme="light"] #achievements .group .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+[data-theme="light"] #achievements .group .text-slate-400 {
+  color: #94a3b8 !important;
+}

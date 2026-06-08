@@ -1,8 +1,8 @@
 ---
 title: "EventKH"
 description: "EventKH is an event management platform that enables quick creation of event websites, management of registrations, and tracking of attendance all in one place."
-image: "assets/img/Eventkh.png"
-tags: ["Web", "Events", "Platform"]
+image: "assets/img/Eventkh.jpg"
+tags: ["Events management", "Platform"]
 link: "https://event.gov.kh"
 year: "2026"
 role: "Government Platform"

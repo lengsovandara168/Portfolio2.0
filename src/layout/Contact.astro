@@ -1,3 +1,101 @@
 ---
+const GMAIL_URL =
+  "https://mail.google.com/mail/?view=cm&fs=1&to=lengsovandara7@gmail.com&su=Portfolio%20Inquiry";
 
+const socials = [
+  {
+    href: "https://github.com/lengsovandara168",
+    icon: "ri-github-fill",
+    label: "GitHub",
+  },
+  {
+    href: "https://www.linkedin.com/in/leng-sovandara-41766b294",
+    icon: "ri-linkedin-box-fill",
+    label: "LinkedIn",
+  },
+  {
+    href: "https://www.instagram.com/leng_sovandara/",
+    icon: "ri-instagram-fill",
+    label: "Instagram",
+  },
+  {
+    href: "https://www.facebook.com/lengsovandara11",
+    icon: "ri-facebook-fill",
+    label: "Facebook",
+  },
+];
 ---
+
+<section
+  id="contact"
+  class="relative overflow-hidden bg-[#0b1220] px-4 py-24 text-white sm:px-6 lg:px-8"
+>
+  <!-- Background glow -->
+  <div
+    class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-full max-w-2xl bg-[#c7a76c]/6 blur-[130px]"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-3xl text-center">
+    <!-- Kicker -->
+    <p
+      class="mb-4 text-sm font-medium uppercase tracking-[0.32em] text-[#e6d3aa]"
+    >
+      Contact
+    </p>
+
+    <!-- Heading -->
+    <h2
+      class="text-4xl font-black leading-tight tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl"
+    >
+      Let&apos;s Build Something
+      <span
+        class="block bg-gradient-to-r from-[#c7a76c] via-[#e6d3aa] to-[#c7a76c] bg-clip-text text-transparent"
+        >Together.</span
+      >
+    </h2>
+
+    <p class="mx-auto mt-6 max-w-xl text-base leading-8 text-slate-300">
+      Whether it&apos;s a new project, a freelance opportunity, or just a
+      conversation about tech — my inbox is always open.
+    </p>
+
+    <!-- Primary CTA -->
+    <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+      <a
+        href={GMAIL_URL}
+        target="_blank"
+        rel="noreferrer"
+        class="inline-flex items-center gap-2 rounded-full bg-[#c7a76c] px-8 py-3.5 text-sm font-bold text-[#0b1220] shadow-lg transition hover:bg-[#d8bd87] hover:shadow-[0_0_28px_rgba(199,167,108,0.35)]"
+      >
+        <i class="ri-mail-send-line text-base"></i>
+        Send me an Email
+      </a>
+      
+    </div>
+
+    <!-- Divider -->
+    <div class="my-12 flex items-center gap-4">
+      <div class="h-px flex-1 bg-white/10"></div>
+      <span class="text-xs uppercase tracking-[0.24em] text-slate-500">or find me on</span>
+      <div class="h-px flex-1 bg-white/10"></div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="flex justify-center gap-4">
+      {
+        socials.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={social.label}
+            class="group flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-xl text-slate-400 transition-all hover:border-[#c7a76c]/30 hover:bg-[#c7a76c]/10 hover:text-[#e6d3aa]"
+          >
+            <i class={social.icon} />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

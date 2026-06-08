@@ -1,5 +1,4 @@
 ---
-
 import "../styles/global.css";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
@@ -9,11 +8,27 @@ import Header from "./Header.astro";
 <html lang="en" data-theme="dark">
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/assets/logo/lsd_logo.png" />
-        <link rel="icon" href="//assets/logo/lsd_logo.png" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Leng Sovandara portfolio</title>
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="/assets/logo/lsd_logo.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Leng Sovandara — Full-Stack & Mobile Developer</title>
+        <meta name="description" content="Portfolio of Leng Sovandara — a Full-Stack & Mobile Developer specializing in React, Next.js, and Flutter. Based in Cambodia, building high-performance digital products." />
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Leng Sovandara — Full-Stack & Mobile Developer" />
+        <meta property="og:description" content="Portfolio of Leng Sovandara — a Full-Stack & Mobile Developer specializing in React, Next.js, and Flutter." />
+        <meta property="og:image" content="/assets/img/dara.jpg" />
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Leng Sovandara — Full-Stack & Mobile Developer" />
+        <meta name="twitter:description" content="Full-Stack & Mobile Developer specializing in React, Next.js, and Flutter." />
+        <meta name="twitter:image" content="/assets/img/dara.jpg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" /></noscript>
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" /></noscript>
         <script is:inline>
           (function () {
             try {

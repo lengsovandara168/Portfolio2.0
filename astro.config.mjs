@@ -13,6 +13,9 @@ export default defineConfig({
         "@/assets": fileURLToPath(new URL("./public/assets", import.meta.url)),
       },
     },
+    server: {
+      allowedHosts: ["wielder-dipped-unplowed.ngrok-free.dev"],
+    },
   },
   integrations: [react(), tailwind()],
 });
